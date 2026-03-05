@@ -71,3 +71,62 @@ async function algo() {
     const r = await outraFuncao();
 }
 
+/*
+    🎯 Quando usar async na vida real?
+
+Sempre que algo demora:
+
+✔ banco de dados
+✔ API
+✔ login
+✔ upload
+✔ arquivos
+
+📦 Visualização mental profissional
+Sistema backend real:
+request → servidor → banco → resposta
+Isso SEMPRE é async.
+
+🧪 Mini exemplo realista
+Simulando banco:
+*/
+function buscarUsuario() {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve("Usuário encontrado");
+        }, 2000);
+    });
+}
+
+async function sistema() {
+    console.log("Buscando...");
+    const resultado = await buscarUsuario();
+    console.log(resultado);
+}
+
+sistema();
+/*
+    Saída:
+
+Buscando...
+(espera 2s)
+Usuário encontrado
+*/
+
+/*
+🧠 Resumo que dev sênior tem na cabeça
+
+Se demora → async
+Se é instantâneo → síncrono
+
+🧭 Como saber se função é async?
+
+Se tiver:
+banco
+API
+timer
+arquivo
+
+👉 então deve ser async
+*/
+
