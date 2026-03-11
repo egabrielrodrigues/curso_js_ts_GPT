@@ -14,6 +14,8 @@ async function main() {
 
 main();
 
+//--------------------------------------------------------------------
+
 function saldoCDB() {
     return new Promise(resolve => {
         setTimeout(() => {
@@ -29,7 +31,7 @@ async function extrato() {
 
 extrato();
 
-function sadoFIIS() {
+function saldoFIIS() {
     return new Promise(resolve => {
         setTimeout(() => {
             resolve({ investimento: "FIIS", saldo: 3000 });
@@ -37,3 +39,35 @@ function sadoFIIS() {
     })
 }
 
+async function verFiis() {
+    const fii = await saldoFIIS();
+    console.log(fii);
+}
+
+verFiis();
+
+//---------------------------------------------------------------
+function saldoPoup() {
+    return new Promise((resolve, reject) => {
+        const sistemaForaDoAr = false;
+
+        setTimeout(() => {
+            if (sistemaForaDoAr) {
+                reject("Sistema Indidsponivel");
+            } else {
+                resolve({ investimento: "Poupança", saldo: 800 });
+            }
+        }, 3000)
+    })
+}
+
+async function mainTwo() {
+    try {
+        const poupanca = await saldoPoup();
+        console.log(poupanca);
+    } catch (error) {
+        console.log("Erro: ", error);
+    }
+}
+
+mainTwo();
